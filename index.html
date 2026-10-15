@@ -1,0 +1,62 @@
+
+<div class="fx-layer" aria-hidden="true">
+  <span class="bubble" style="--left:8%;--size:18px;--duration:17s;--delay:-3s"></span>
+  <span class="bubble" style="--left:20%;--size:32px;--duration:23s;--delay:-12s"></span>
+  <span class="bubble" style="--left:36%;--size:12px;--duration:19s;--delay:-8s"></span>
+  <span class="bubble" style="--left:52%;--size:25px;--duration:21s;--delay:-5s"></span>
+  <span class="bubble" style="--left:68%;--size:16px;--duration:16s;--delay:-10s"></span>
+  <span class="bubble" style="--left:82%;--size:35px;--duration:24s;--delay:-7s"></span>
+  <span class="bubble" style="--left:94%;--size:13px;--duration:18s;--delay:-2s"></span>
+
+  <span class="sparkle" style="--left:12%;--top:25%;--delay:-1s"></span>
+  <span class="sparkle" style="--left:29%;--top:68%;--delay:-2s"></span>
+  <span class="sparkle" style="--left:47%;--top:18%;--delay:-3s"></span>
+  <span class="sparkle" style="--left:63%;--top:43%;--delay:-1.5s"></span>
+  <span class="sparkle" style="--left:79%;--top:75%;--delay:-2.5s"></span>
+  <span class="sparkle" style="--left:91%;--top:30%;--delay:-0.5s"></span>
+</div>
+
+
+<section class="card" id="emergency">
+  <h2>🚨 Worker Emergency</h2>
+
+  <label for="workerId">Worker ID</label>
+  <input id="workerId" value="W-104">
+
+  <label for="workerLocation">Construction site location</label>
+  <input id="workerLocation" placeholder="Enter site location">
+
+  <label for="emergencyPhoto">Capture emergency photo</label>
+  <input id="emergencyPhoto" type="file"
+         accept="image/*" capture="environment">
+
+  <img id="photoPreview" alt="Emergency photo preview" hidden>
+
+  <button type="button" onclick="sendEmergency()">
+    Send Emergency Report
+  </button>
+
+  <button type="button" onclick="call112()">
+    Call Emergency Services — 112
+  </button>
+
+  <p id="emergencyStatus" role="status">
+    No emergency report submitted.
+  </p>
+</section>
+
+<section class="card">
+  <h3>📡 Network Status</h3>
+  <p id="networkStatus">Checking connection...</p>
+  <p id="pendingCount">Pending reports: 0</p>
+</section>
+
+<section class="card">
+  <h3>🔋 Device Battery</h3>
+  <p id="batteryStatus">Checking battery...</p>
+  <div class="battery-track">
+    <div id="batteryLevel"></div>
+  </div>
+  <p id="batteryAdvice">Battery monitoring depends on browser support.</p>
+</section>
+
