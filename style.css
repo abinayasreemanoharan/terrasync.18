@@ -1,0 +1,479 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap');
+
+:root {
+  --bg: #050b1b;
+  --panel: rgba(13, 26, 55, 0.82);
+  --panel2: #101e3d;
+  --border: rgba(104, 170, 255, 0.2);
+  --blue: #4da6ff;
+  --cyan: #65f0ff;
+  --text: #edf5ff;
+  --muted: #9aafd0;
+  --green: #43edb0;
+  --red: #ff5c82;
+  --yellow: #ffd166;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 15% 10%, #122c61 0%, transparent 42%),
+    radial-gradient(ellipse at 85% 75%, #092b4b 0%, transparent 38%),
+    #050b1b;
+  background-attachment: fixed;
+  line-height: 1.6;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Civil engineering blueprint grid */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(91, 157, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 157, 255, 0.055) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+/* Ambient blue light */
+body::after {
+  content: "";
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  top: 20%;
+  right: -120px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: rgba(35, 116, 255, 0.13);
+  filter: blur(90px);
+  animation: lightDrift 9s ease-in-out infinite alternate;
+}
+
+@keyframes lightDrift {
+  from { transform: translate(-30px, -20px); }
+  to { transform: translate(-100px, 70px); }
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Rajdhani', sans-serif;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: #f4f8ff;
+  text-shadow: 0 0 24px rgba(77, 166, 255, 0.18);
+}
+
+h2 {
+  font-size: 1.65rem;
+}
+
+p {
+  color: var(--muted);
+}
+
+/* Main layout */
+.container,
+.dashboard,
+.main-content,
+main {
+  width: min(1450px, 94%);
+  margin: auto;
+  padding: 26px 0 50px;
+}
+
+/* Header */
+header,
+.topbar,
+.navbar {
+  padding: 25px 28px;
+  margin-bottom: 25px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(21, 43, 86, 0.9),
+    rgba(7, 17, 39, 0.92)
+  );
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+header h1,
+.topbar h1,
+.navbar h1 {
+  margin-top: 0;
+}
+
+header h1::before,
+.topbar h1::before,
+.navbar h1::before {
+  content: "✦ ";
+  color: var(--cyan);
+}
+
+/* Luxury glass cards */
+.card,
+.stat-card,
+.metric-card,
+.panel,
+section {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  margin-bottom: 22px;
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  background: linear-gradient(
+    145deg,
+    rgba(18, 36, 74, 0.86),
+    rgba(7, 16, 38, 0.91)
+  );
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(16px);
+  transition: transform 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  animation: cardAppear 0.7s ease both;
+}
+
+.card:hover,
+.stat-card:hover,
+.metric-card:hover,
+.panel:hover {
+  transform: translateY(-5px);
+  border-color: rgba(101, 240, 255, 0.55);
+  box-shadow:
+    0 15px 40px rgba(0, 72, 180, 0.16),
+    0 0 24px rgba(77, 166, 255, 0.08);
+}
+
+.card h2,
+.card h3,
+.panel h2,
+.panel h3,
+section h2,
+section h3 {
+  margin-top: 0;
+  color: #eaf5ff;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dashboard figures */
+#openCount,
+#risk,
+#riskDetail {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--cyan);
+  text-shadow: 0 0 18px rgba(101, 240, 255, 0.16);
+}
+
+#riskBar {
+  height: 10px;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #43edb0, #65f0ff, #4d8dff, #ff5c82);
+  box-shadow: 0 0 16px rgba(77, 166, 255, 0.18);
+  transition: width 0.5s ease;
+}
+
+#riskMessage {
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Buttons */
+button,
+.btn {
+  padding: 12px 19px;
+  margin: 5px 5px 5px 0;
+  border: 1px solid rgba(101, 240, 255, 0.28);
+  border-radius: 11px;
+  background: linear-gradient(135deg, #247bfa, #3c55d9);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(36, 123, 250, 0.15);
+  transition: all 0.25s ease;
+}
+
+button:hover,
+.btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #48baff, #536cff);
+  box-shadow: 0 8px 25px rgba(77, 166, 255, 0.28);
+}
+
+button:active,
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Emergency button */
+#sosResult {
+  color: var(--red);
+  font-weight: 700;
+}
+
+button[onclick="sendSOS()"] {
+  background: linear-gradient(135deg, #e93263, #9e255a);
+  border-color: rgba(255, 92, 130, 0.6);
+  animation: sosPulse 2s ease-in-out infinite;
+}
+
+@keyframes sosPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255, 92, 130, 0); }
+  50% { box-shadow: 0 0 20px rgba(255, 92, 130, 0.25); }
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+  width: 100%;
+  margin: 8px 0 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(4, 12, 29, 0.9);
+  color: var(--text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7e94b7;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(101, 240, 255, 0.08);
+}
+
+/* Worker images */
+img,
+#preview,
+#workerImage {
+  max-width: 100%;
+  border-radius: 13px;
+}
+
+#preview,
+#workerImage {
+  border: 1px solid var(--border);
+  background: #081329;
+}
+
+/* PPE and zone results */
+#ppeResult,
+#zoneResult {
+  padding: 13px;
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(4, 12, 29, 0.75);
+}
+
+/* Worker location */
+#worker,
+#location {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+/* Incident history */
+#incidentList {
+  display: grid;
+  gap: 13px;
+}
+
+#incidentList > * {
+  padding: 15px 17px;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 12px;
+  background: rgba(8, 20, 44, 0.88);
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 13px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  color: var(--cyan);
+  background: #10234a;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  font-size: 0.85rem;
+}
+
+td {
+  color: #d9e8ff;
+}
+
+tr:hover td {
+  background: rgba(77, 166, 255, 0.045);
+}
+
+.success, .safe { color: var(--green); }
+.warning, .medium { color: var(--yellow); }
+.danger, .high { color: var(--red); }
+
+/* Floating bubble and sparkle effects */
+.fx-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: var(--size, 22px);
+  height: var(--size, 22px);
+  left: var(--left, 50%);
+  border: 1px solid rgba(101, 210, 255, 0.32);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 25%,
+    rgba(255, 255, 255, 0.35),
+    rgba(77, 166, 255, 0.08) 40%,
+    rgba(77, 166, 255, 0.015)
+  );
+  box-shadow:
+    inset -3px -3px 10px rgba(77, 166, 255, 0.08),
+    0 0 16px rgba(77, 166, 255, 0.08);
+  animation: bubbleFloat var(--duration, 18s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes bubbleFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.7);
+    opacity: 0;
+  }
+  10% { opacity: 0.75; }
+  50% { transform: translate3d(35px, -55vh, 0) scale(1); }
+  90% { opacity: 0.55; }
+  100% {
+    transform: translate3d(-25px, -115vh, 0) scale(1.15);
+    opacity: 0;
+  }
+}
+
+.sparkle {
+  position: absolute;
+  left: var(--left, 50%);
+  top: var(--top, 50%);
+  width: var(--size, 3px);
+  height: var(--size, 3px);
+  border-radius: 50%;
+  background: #b8f7ff;
+  box-shadow: 0 0 8px 2px rgba(101, 240, 255, 0.42);
+  animation: sparkleBlink var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes sparkleBlink {
+  0%, 100% { opacity: 0.12; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.6); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container,
+  .dashboard,
+  .main-content,
+  main {
+    width: 92%;
+    padding-top: 15px;
+  }
+
+  header,
+  .topbar,
+  .navbar,
+  .card,
+  .stat-card,
+  .metric-card,
+  .panel,
+  section {
+    padding: 17px;
+    border-radius: 14px;
+  }
+
+  h1 { font-size: 2rem; }
+
+  #openCount,
+  #risk,
+  #riskDetail {
+    font-size: 2rem;
+  }
+
+  button, .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
